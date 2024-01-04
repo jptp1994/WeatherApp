@@ -60,12 +60,12 @@ class WheaterRemoteDataSourceTest : DataBaseTest() {
     fun `get weather should return error`() =
         dispatcher.runTest {
             // Arrange (Given)
-            whenever(weatherRetrofit.getWheather(0.0,0.0,"dd")) doAnswer { throw IOException() }
+            whenever(weatherRetrofit.getWheather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")) doAnswer { throw IOException() }
 
             // Act (When)
 
             try{
-                sut.getWeather(0.0,0.0,"dd")
+                sut.getWeather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
             }catch (exception:IOException){
 
                 // Assert (Then)
@@ -74,7 +74,7 @@ class WheaterRemoteDataSourceTest : DataBaseTest() {
                 )
             }
 
-            verify(weatherRetrofit, times(1)).getWheather(0.0,0.0,"dd")
+            verify(weatherRetrofit, times(1)).getWheather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
         }
 
     @Test

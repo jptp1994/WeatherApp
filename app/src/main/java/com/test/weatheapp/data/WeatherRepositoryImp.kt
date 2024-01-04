@@ -29,10 +29,8 @@ class WeatherRepositoryImp @Inject constructor(
         val isInternet= NetworkFunctions.isNetworkAvailable(weatherParams.context)
         if (isInternet){
             val geoCoding= dataSourceFactory.getRemoteDataSource().getCityName(weatherParams.nameCity,weatherParams.apiKey)
-
-            if (geoCoding.lat!=0.0 && geoCoding.lon!=0.0) {
-                val weatherEntity= dataSourceFactory.getRemoteDataSource().getWeather(geoCoding.lat,
-                    geoCoding.lon, weatherParams.apiKey)
+            val weatherEntity= dataSourceFactory.getRemoteDataSource().getWeather(geoCoding.geocodings.first().lat,
+                    geoCoding.geocodings.first().lon, weatherParams.apiKey)
                 // Obtener datos locales de Room
                 val localData = dataSourceFactory.getCacheDataSource().getSelectedWeather(weatherParams.nameCity)
                 // Comparar y actualizar/insetar en la base de datos local
@@ -45,7 +43,9 @@ class WeatherRepositoryImp @Inject constructor(
                     dataSourceFactory.getCacheDataSource().saveSelectedWeather(weatherRoomMapper.mapToCached(weatherEntity))
                 }
                 emit(weatherMapper.mapFromModel(weatherEntity))
-            }
+
+
+
         } else{
             emit(
                 weatherMapper.mapFromModel(dataSourceFactory.getCacheDataSource().getSelectedWeather(weatherParams.nameCity))

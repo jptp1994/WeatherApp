@@ -1,7 +1,7 @@
 package com.test.weatheapp.data.repository
 
 import com.test.weatheapp.data.model.WeatherEntity
-import com.test.weatheapp.data.retrofit.model.GeoCoding
+import com.test.weatheapp.data.retrofit.model.GeoCodingResponse
 import com.test.weatheapp.data.room.model.WeatherRoomClass
 
 
@@ -9,7 +9,7 @@ interface WeatherDataSource {
 
     //Retrofit
     suspend fun getWeather(lat:Double, lon:Double, apiKey:String): WeatherEntity
-    suspend fun getCityName(nameCity: String, apiKey: String): GeoCoding
+    suspend fun getCityName(nameCity: String, apiKey: String): GeoCodingResponse
 
     //Room
     suspend fun getAllWeather(): List<WeatherEntity>

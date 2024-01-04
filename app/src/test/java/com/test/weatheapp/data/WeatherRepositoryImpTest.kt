@@ -102,13 +102,13 @@ class WeatherRepositoryImpTest : DataBaseTest() {
             `when`(dataSourceFactory.getRemoteDataSource()) doReturn dataSource
             `when`(dataSourceFactory.getRemoteDataSource()) doReturn dataSource
             `when`(
-                dataSourceFactory.getRemoteDataSource().getWeather(0.0,0.0,"dd")
+                dataSourceFactory.getRemoteDataSource().getWeather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
             ) doReturn FakeWeathers.getWeathers().first()
 
             // Assert (Then)
             verify(dataSourceFactory, times(2)).getRemoteDataSource()
             verify(dataSourceFactory, times(2)).getRemoteDataSource()
-            verify(dataSourceFactory.getRemoteDataSource(), times(1)).getWeather(0.0,0.0,"dd")
+            verify(dataSourceFactory.getRemoteDataSource(), times(1)).getWeather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
             verify(weatherEntityMapper, times(2)).mapFromModel(any())
         }
 
@@ -122,7 +122,7 @@ class WeatherRepositoryImpTest : DataBaseTest() {
             `when`(weatherEntityMapper.mapFromModel(any())) doReturn FakeWeathers.getWeather()
 
             // Act (When)
-            val weather = sut.getWeather(WeatherParams("Iztapalapa", ApplicationProvider.getApplicationContext(),"dd")).single()
+            val weather = sut.getWeather(WeatherParams("Iztapalapa", ApplicationProvider.getApplicationContext(),"73cf3fb41f9fb30c702f3471c53bfa37")).single()
 
             // Assert (Then)
             assertEquals(weather.nameCity, "Iztapalapa")
@@ -144,13 +144,13 @@ class WeatherRepositoryImpTest : DataBaseTest() {
             `when`(dataSourceFactory.getRemoteDataSource()) doReturn dataSource
 
             // Act (When)
-            sut.getWeather(WeatherParams(characterId,ApplicationProvider.getApplicationContext(),"dd")).single()
+            sut.getWeather(WeatherParams(characterId,ApplicationProvider.getApplicationContext(),"73cf3fb41f9fb30c702f3471c53bfa37")).single()
 
             // Assert (Then)
             verify(dataSourceFactory, times(1)).getCacheDataSource()
             verify(dataSourceFactory.getCacheDataSource(), times(2)).getSelectedWeather(characterId)
             verify(dataSourceFactory, times(1)).getRemoteDataSource()
-            verify(dataSourceFactory.getRemoteDataSource(), times(2)).getWeather(0.0,0.0,"dd")
+            verify(dataSourceFactory.getRemoteDataSource(), times(2)).getWeather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
             verify(weatherEntityMapper, times(1)).mapFromModel(any())
         }
 }

@@ -15,7 +15,7 @@ import com.test.weatheapp.data.room.model.WindRoom
 import com.test.weatheapp.data.room.utils.RoomConstants
 
 
-@Database(entities = [WeatherRoomClass::class, CoordRoom::class, GeneralRoom::class, WindRoom::class], version = 3, exportSchema = false)
+@Database(entities = [WeatherRoomClass::class, CoordRoom::class, GeneralRoom::class, WindRoom::class], version = 4, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class WeatherDatabase: RoomDatabase() {
 
@@ -37,13 +37,14 @@ abstract class WeatherDatabase: RoomDatabase() {
     }
 
     suspend fun populateDatabase() {
-        // Llena la tabla con datos por defecto
-        cachedWeatherDao().insertAll(getDefaultData())
+        for (entityList in getDefaultData()) {
+            cachedWeatherDao().insertAll(entityList)
+        }
     }
 
-    private fun getDefaultData(): List<WeatherRoomClass> {
-        // Aquí puedes definir tus datos por defecto
+    private fun getDefaultData():List<List<WeatherRoomClass>> {
         return listOf(
+            listOf(
             WeatherRoomClass(
                 cord= CoordRoom(longitude =  19.344123, latitude =  -99.061062),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Sun", description = "Full sun", icon = "e10")),
@@ -62,26 +63,8 @@ abstract class WeatherDatabase: RoomDatabase() {
                     deg= 0,
                     gust= 0.0
                 ), nameCity = "Iztapalapa"
-            ),
-            WeatherRoomClass(
-                cord= CoordRoom(longitude = 19.344123, latitude =  -99.061062),
-                weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Sun", description = "Full sun", icon = "e10")),
-                generalClass =
-                GeneralRoom(
-                    temp=22.86,
-                    feelsLike = 0.0,
-                    tempMin = 20.00,
-                    tempMax = 24.00,
-                    pressure = 1023,
-                    humidity = 11,
-                    seaLevel = 0,
-                    grndLevel = 0
-                ), wind = WindRoom(
-                    speed = 0.0,
-                    deg= 0,
-                    gust= 0.0
-                ), nameCity = "Iztapalapa"
-            ),
+            )),
+            listOf(
             WeatherRoomClass(
                 cord= CoordRoom(longitude =  10.464973, latitude =  -66.886953),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Rain", description = "Medium rain", icon = "e20")),
@@ -100,8 +83,8 @@ abstract class WeatherDatabase: RoomDatabase() {
                     deg= 110,
                     gust= 0.0
                 ), nameCity = "Caracas"
-            ),
-            WeatherRoomClass(
+            )),
+            listOf(WeatherRoomClass(
                 cord= CoordRoom(longitude =  3.406703, latitude =  -76.519505),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Rain", description = "Hard rain", icon = "e20")),
                 generalClass =
@@ -119,8 +102,8 @@ abstract class WeatherDatabase: RoomDatabase() {
                     deg= 323,
                     gust= 0.0
                 ), nameCity = "Cali"
-            ),
-            WeatherRoomClass(
+            )),
+            listOf(WeatherRoomClass(
                 cord= CoordRoom(longitude = -0.740956, latitude =  -90.318303),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Sun", description = "sun", icon = "e21")),
                 generalClass =
@@ -138,8 +121,8 @@ abstract class WeatherDatabase: RoomDatabase() {
                     deg= 199,
                     gust= 0.0
                 ), nameCity = "Puerto Ayora"
-            ),
-            WeatherRoomClass(
+            )),
+            listOf(WeatherRoomClass(
                 cord= CoordRoom(longitude = -3.081459, latitude =  -60.020545),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Sun", description = "sun", icon = "e22")),
                 generalClass =
@@ -157,6 +140,7 @@ abstract class WeatherDatabase: RoomDatabase() {
                     deg= 30,
                     gust= 0.0
                 ), nameCity = "Manaus"
+            )
             )
 
             // Agrega más datos según sea necesario

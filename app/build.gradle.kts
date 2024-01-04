@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id(Config.Plugins.android)
     id(Config.Plugins.kotlinAndroidPlug)
@@ -65,11 +67,15 @@ dependencies {
     implementation(Dependencies.ComposeDep.uiGraphics)
     implementation(Dependencies.ComposeDep.uiPreview)
     implementation(Dependencies.ComposeDep.uiMaterial)
-    implementation("com.google.ar:core:1.41.0")
-    implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation(Dependencies.CoreDep.ar)
+    implementation(Dependencies.ComposeDep.liveData)
+
+    //Google Maps
+    implementation(Dependencies.GoogleDep.maps)
 
     //Unit Test
     testImplementation(Dependencies.TestDep.junit)
+    implementation(Dependencies.TestDep.junitKtx)
     androidTestImplementation(Dependencies.TestDep.testExtJunit)
     androidTestImplementation(Dependencies.TestDep.espressoCore)
     androidTestImplementation(platform(Dependencies.ComposeDep.composeBom))
@@ -82,7 +88,7 @@ dependencies {
 
     //Room
     implementation(Dependencies.RoomDep.room)
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(Dependencies.RoomDep.roomKtx)
     kapt(Dependencies.RoomDep.roomCompiler)
 
     // optional - Test helpers

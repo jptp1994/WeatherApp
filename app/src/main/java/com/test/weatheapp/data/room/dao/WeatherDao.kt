@@ -22,6 +22,6 @@ interface WeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveSelectedWeather(weather: WeatherRoomClass)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(entities: List<WeatherRoomClass>)
 }

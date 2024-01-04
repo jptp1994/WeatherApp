@@ -8,13 +8,10 @@ import androidx.room.TypeConverters
 import com.test.weatheapp.data.retrofit.model.WeatherCityClass
 import com.test.weatheapp.data.room.converters.Converters
 import com.test.weatheapp.data.room.utils.RoomConstants
-
-
-@SuppressWarnings(RoomWarnings.PRIMARY_KEY_FROM_EMBEDDED_IS_DROPPED)
 @Entity(tableName = RoomConstants.WEATHER_TABLE_NAME)
 data class WeatherRoomClass(
     @PrimaryKey(autoGenerate = true)
-    val id: Long?= 0,
+    val id: Int=0,
     @Embedded
     val cord: CoordRoom,
     @TypeConverters(Converters::class)

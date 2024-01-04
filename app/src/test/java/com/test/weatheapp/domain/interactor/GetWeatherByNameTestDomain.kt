@@ -44,17 +44,17 @@ class GetWeatherByNameTestDomain : DomainBaseTest() {
             // Arrange (Given)
             val cityName = "Iztapalapa"
             whenever(weatherRepository.getWeather(WeatherParams(cityName,
-                ApplicationProvider.getApplicationContext(),"dd"))) doReturn FakeData.getWeather()
+                ApplicationProvider.getApplicationContext(),"73cf3fb41f9fb30c702f3471c53bfa37"))) doReturn FakeData.getWeather()
 
             // Act (When)
             val weather = sut(WeatherParams(cityName,
-                ApplicationProvider.getApplicationContext(),"dd")).single()
+                ApplicationProvider.getApplicationContext(),"73cf3fb41f9fb30c702f3471c53bfa37")).single()
 
             // Assert (Then)
             assertEquals(weather.nameCity, cityName)
             assertEquals(weather.general.temp, 22.86)
             verify(weatherRepository, times(1)).getWeather(WeatherParams(cityName,
-                ApplicationProvider.getApplicationContext(),"dd"))
+                ApplicationProvider.getApplicationContext(),"73cf3fb41f9fb30c702f3471c53bfa37"))
         }
 
     @Test
@@ -63,12 +63,12 @@ class GetWeatherByNameTestDomain : DomainBaseTest() {
             // Arrange (Given)
             val cityName= "Iztapalapa"
             whenever(weatherRepository.getWeather(WeatherParams(cityName,
-                ApplicationProvider.getApplicationContext(),"dd"))) doAnswer { throw IOException() }
+                ApplicationProvider.getApplicationContext(),"73cf3fb41f9fb30c702f3471c53bfa37"))) doAnswer { throw IOException() }
 
             // Act (When)
             try{
                 sut(WeatherParams(cityName,
-                    ApplicationProvider.getApplicationContext(),"dd")).single()
+                    ApplicationProvider.getApplicationContext(),"73cf3fb41f9fb30c702f3471c53bfa37")).single()
             }catch (exception:IOException){
                 // Assert (Then)
                 MatcherAssert.assertThat(
@@ -79,6 +79,6 @@ class GetWeatherByNameTestDomain : DomainBaseTest() {
 
 
             verify(weatherRepository, times(1)).getWeather(WeatherParams(cityName,
-                ApplicationProvider.getApplicationContext(),"dd"))
+                ApplicationProvider.getApplicationContext(),"73cf3fb41f9fb30c702f3471c53bfa37"))
         }
 }

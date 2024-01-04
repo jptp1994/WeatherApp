@@ -48,10 +48,10 @@ class WeatherRemoteImpTest : RemoteBaseTest() {
         dispatcher.runTest {
             // Arrange (Given)
             val response = FakeRemoteData.getResponse(7)
-            `when`(mapper.mapFromModel(weatherService.getWhether(0.0,0.0,"dd"))) doReturn response.first()
+            `when`(mapper.mapFromModel(weatherService.getWhether(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37"))) doReturn response.first()
 
             // Act (When)
-            val weathers = sut.getWheather(0.0,0.0,"dd")
+            val weathers = sut.getWheather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
 
             // Assert (Then)
             assertEquals(weathers.weatherCityEntity.size, 1)
@@ -63,10 +63,10 @@ class WeatherRemoteImpTest : RemoteBaseTest() {
         dispatcher.runTest {
             // Arrange (Given)
             val response = FakeRemoteData.getResponse(0)
-            `when`(mapper.mapFromModel(weatherService.getWhether(0.0,0.0,"dd"))) doReturn response.first()
+            `when`(mapper.mapFromModel(weatherService.getWhether(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37"))) doReturn response.first()
 
             // Act (When)
-            val weathers = sut.getWheather(0.0,0.0,"dd")
+            val weathers = sut.getWheather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
 
             // Assert (Then)
             assertEquals(weathers.weatherCityEntity.size, 0)
@@ -77,11 +77,11 @@ class WeatherRemoteImpTest : RemoteBaseTest() {
     fun `get weathers should return error from remote server`() =
         dispatcher.runTest {
             // Arrange (Given)
-            whenever(weatherService.getWhether(0.0,0.0,"dd")) doAnswer { throw IOException() }
+            whenever(weatherService.getWhether(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")) doAnswer { throw IOException() }
 
             // Act (When)
             try{
-                sut.getWheather(0.0,0.0,"dd")
+                sut.getWheather(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
 
             }
             catch(exception:IOException){
@@ -93,7 +93,7 @@ class WeatherRemoteImpTest : RemoteBaseTest() {
 
 
 
-            verify(weatherService, times(1)).getWhether(0.0,0.0,"dd")
+            verify(weatherService, times(1)).getWhether(0.0,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
         }
 
     @Test
@@ -101,11 +101,11 @@ class WeatherRemoteImpTest : RemoteBaseTest() {
         dispatcher.runTest {
             // Arrange (Given)
             val characterId = 0.0
-            whenever(weatherService.getWhether(characterId,0.0,"dd")) doAnswer { throw IOException() }
+            whenever(weatherService.getWhether(characterId,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")) doAnswer { throw IOException() }
 
             // Act (When)
             try{
-                sut.getWheather(characterId,0.0,"dd")
+                sut.getWheather(characterId,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
             }catch (exception:IOException){
                 // Assert (Then)
                 assertThat(
@@ -113,6 +113,6 @@ class WeatherRemoteImpTest : RemoteBaseTest() {
                 )
             }
 
-            verify(weatherService, times(1)).getWhether(characterId,0.0,"dd")
+            verify(weatherService, times(1)).getWhether(characterId,0.0,"73cf3fb41f9fb30c702f3471c53bfa37")
         }
 }

@@ -4,8 +4,8 @@ import com.test.weatheapp.data.repository.WeatherDataSource
 import javax.inject.Inject
 
 open class WeatherDataSourceFactory @Inject constructor(
-    private val cacheDataSource: WeatherRemoteDataSource,
-    private val remoteDataSource: WeatherCacheDataSource
+    private val cacheDataSource: WeatherCacheDataSource,
+    private val remoteDataSource: WeatherRemoteDataSource
 ) {
 
     fun getRemoteDataSource(): WeatherDataSource {

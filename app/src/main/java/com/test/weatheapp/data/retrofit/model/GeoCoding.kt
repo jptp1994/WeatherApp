@@ -1,16 +1,16 @@
 package com.test.weatheapp.data.retrofit.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-data class GeoCoding(
-    @SerializedName("name")
-    val name:String,
-    @SerializedName("lat")
-    val lat:Double,
-    @SerializedName("lon")
-    val lon:Double,
-    @SerializedName("country")
-    val country:String,
-    @SerializedName("state")
-    val state:String,
+@JsonClass(generateAdapter = true)
+data class GeoCodingList(
+    @Json(name = "name") val name: String,
+    @Json(name = "lat") val lat: Double,
+    @Json(name = "lon") val lon: Double,
+    @Json(name = "country") val country: String,
+    @Json(name = "state") val state: String
 )
+
+@JsonClass(generateAdapter = true)
+data class GeoCodingResponse(val geocodings: List<GeoCodingList>)
