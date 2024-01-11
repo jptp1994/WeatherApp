@@ -12,6 +12,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+
+//Contains the dagger dependency from retrofit
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {

@@ -3,7 +3,6 @@ package com.test.weatheapp.data.room.model
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.RoomWarnings
 import androidx.room.TypeConverters
 import com.test.weatheapp.data.retrofit.model.WeatherCityClass
 import com.test.weatheapp.data.room.converters.Converters
@@ -13,12 +12,12 @@ data class WeatherRoomClass(
     @PrimaryKey(autoGenerate = true)
     val id: Int=0,
     @Embedded
-    val cord: CoordRoom,
+    val cord: CoordRoom?,
     @TypeConverters(Converters::class)
-    val weatherCityClass: List<WeatherCityClass>,
+    val weatherCityClass: List<WeatherCityClass>?,
     @Embedded
-    val generalClass: GeneralRoom,
+    val generalClass: GeneralRoom?,
     @Embedded
-    val wind:WindRoom,
-    val nameCity: String,
+    val wind:WindRoom?,
+    val nameCity: String?,
     )

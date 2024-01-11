@@ -1,10 +1,10 @@
 package com.test.weatheapp.data.mapper
 
 import com.test.weatheapp.data.model.WeatherEntity
-import com.test.weatheapp.domain.model.Cord
 import com.test.weatheapp.domain.model.Weather
 import javax.inject.Inject
 
+//Mapper from Weather Entity to Weather Model
 class WeatherEntityMapper @Inject constructor(
     private val cordEntityMapper: CordEntityMapper,
     private val generalEntityMapper: GeneralEntityMapper,

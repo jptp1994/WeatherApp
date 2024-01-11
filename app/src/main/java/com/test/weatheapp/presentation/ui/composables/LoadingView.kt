@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
+//Generic Loading compose
 @Composable
 fun LoadingView(modifier: Modifier) {
-    // Puedes personalizar la vista de carga según tus necesidades
     Box(
         modifier = modifier
     ) {

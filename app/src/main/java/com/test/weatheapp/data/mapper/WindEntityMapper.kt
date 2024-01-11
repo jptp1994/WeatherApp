@@ -1,10 +1,10 @@
 package com.test.weatheapp.data.mapper
 
 import com.test.weatheapp.data.model.generalModels.WindEntity
-import com.test.weatheapp.data.retrofit.model.WindClass
 import com.test.weatheapp.domain.model.Wind
 import javax.inject.Inject
 
+//Mapper from Wind Entity to Wind Model
 class WindEntityMapper @Inject constructor() :
     Mapper<WindEntity, Wind> {
 

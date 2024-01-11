@@ -4,6 +4,7 @@ import com.test.weatheapp.data.model.generalModels.GeneralEntity
 import com.test.weatheapp.data.room.model.GeneralRoom
 import javax.inject.Inject
 
+//Mapper from General Room to General Entity
 class GeneralRoomMapper @Inject constructor() :
     CacheMapper<GeneralRoom, GeneralEntity> {
 

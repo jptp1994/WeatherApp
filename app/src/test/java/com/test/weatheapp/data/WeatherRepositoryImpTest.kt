@@ -76,7 +76,6 @@ class WeatherRepositoryImpTest : DataBaseTest() {
     fun `get weather should return weather list from local cache and saved the weather to local db`() =
         dispatcher.runTest {
             // Arrange (Given)
-            val isCached = true
             `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
             `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
             `when`(

@@ -1,11 +1,8 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id(Config.Plugins.android)
     id(Config.Plugins.kotlinAndroidPlug)
     id(Config.Plugins.hiltPlugin)
     kotlin(Config.Plugins.kapt)
-
 }
 
 android {
@@ -95,8 +92,9 @@ dependencies {
     testImplementation(Dependencies.TestDep.roomTest)
 
     //Hilt
-    implementation(Dependencies.DaggerHiltDep.hiltAndroid )
+    implementation(Dependencies.DaggerHiltDep.hiltAndroid)
     kapt(Dependencies.DaggerHiltDep.hiltAndroidKapt )
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0-alpha01")
 
     //Retrofit and okHttp
     implementation(Dependencies.RetrofitDep.loggingInterceptor)

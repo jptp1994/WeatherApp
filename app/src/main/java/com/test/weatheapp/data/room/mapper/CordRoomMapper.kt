@@ -4,6 +4,7 @@ import com.test.weatheapp.data.model.generalModels.CordEntity
 import com.test.weatheapp.data.room.model.CoordRoom
 import javax.inject.Inject
 
+//Mapper from Cord Room to Cord Entity
 class CordRoomMapper @Inject constructor() :
     CacheMapper<CoordRoom, CordEntity> {
 

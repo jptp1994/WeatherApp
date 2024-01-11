@@ -4,6 +4,7 @@ import com.test.weatheapp.data.model.generalModels.WindEntity
 import com.test.weatheapp.data.room.model.WindRoom
 import javax.inject.Inject
 
+//Mapper from Wind Room to Wind Entity
 class WindRoomMapper @Inject constructor() :
     CacheMapper<WindRoom, WindEntity> {
 

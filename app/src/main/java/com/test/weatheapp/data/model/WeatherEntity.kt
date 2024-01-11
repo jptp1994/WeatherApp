@@ -16,6 +16,6 @@ data class WeatherEntity(
     @SerializedName("wind")
     val windEntity: WindEntity,
     @SerializedName("name")
-    val nameCity:String
+    var nameCity:String
 )
 

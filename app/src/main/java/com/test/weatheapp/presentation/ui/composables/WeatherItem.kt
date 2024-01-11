@@ -1,6 +1,5 @@
 package com.test.weatheapp.presentation.ui.composables
 
-import android.os.Bundle
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,14 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.test.weatheapp.domain.model.Weather
 
 
+//Paint a weather item
 @Composable
 fun WeatherItem(weather: Weather) {
     Card(
@@ -81,24 +76,4 @@ fun WeatherItem(weather: Weather) {
             MapView(weather.cord.latitude,weather.cord.longitude)
         }
     }
-}
-@Composable
-fun MapView(lat: Double, lng: Double) {
-    AndroidView(
-        factory = { context ->
-            MapView(context).apply {
-                // Initialize the map view settings
-                onCreate(Bundle())
-                getMapAsync { googleMap ->
-                    // Customize the map as needed
-                    val location = LatLng(lat, lng)
-                    googleMap.addMarker(MarkerOptions().position(location).title("Marker"))
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
-                }
-            }
-        },
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-    )
 }

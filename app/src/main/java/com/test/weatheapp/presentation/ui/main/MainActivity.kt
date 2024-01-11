@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.test.weatheapp.presentation.ui.composables.ErrorView
 import com.test.weatheapp.presentation.ui.composables.LoadingView
-import com.test.weatheapp.presentation.ui.composables.SingleWeatherItem
 import com.test.weatheapp.presentation.ui.composables.WeatherItem
 import com.test.weatheapp.presentation.ui.main.viewmodel.WeatherUIModel
 import com.test.weatheapp.presentation.ui.main.viewmodel.WeatherViewModel
@@ -33,7 +31,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val viewModel: WeatherViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -59,7 +56,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun WeatherPrincipal(viewModel: WeatherViewModel = hiltViewModel(), context: Context) {
+    fun WeatherPrincipal(viewModel: WeatherViewModel =hiltViewModel(), context: Context) {
         val weatherUIModel by viewModel.getWeather().observeAsState()
         Column {
             SearchBar{

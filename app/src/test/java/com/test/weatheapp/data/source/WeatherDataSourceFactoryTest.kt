@@ -1,7 +1,6 @@
 package com.test.weatheapp.data.source
 
 import com.test.weatheapp.data.utils.DataBaseTest
-import com.test.weatheapp.data.repository.WeatherRoom
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -19,9 +18,6 @@ import org.mockito.junit.MockitoJUnitRunner
 class WeatherDataSourceFactoryTest : DataBaseTest() {
 
     @Mock
-    lateinit var weatherRoom: WeatherRoom
-
-    @Mock
     lateinit var dataSourceCache: WeatherCacheDataSource
 
     @Mock
@@ -31,7 +27,7 @@ class WeatherDataSourceFactoryTest : DataBaseTest() {
 
     @Before
     fun setUp() {
-        sut = WeatherDataSourceFactory(dataSourceRemote, dataSourceCache)
+        sut = WeatherDataSourceFactory(dataSourceCache, dataSourceRemote)
     }
 
     @Test

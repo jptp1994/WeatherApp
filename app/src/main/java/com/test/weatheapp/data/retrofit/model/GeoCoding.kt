@@ -1,16 +1,9 @@
 package com.test.weatheapp.data.retrofit.model
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-
-@JsonClass(generateAdapter = true)
 data class GeoCodingList(
-    @Json(name = "name") val name: String,
-    @Json(name = "lat") val lat: Double,
-    @Json(name = "lon") val lon: Double,
-    @Json(name = "country") val country: String,
-    @Json(name = "state") val state: String
+    val name: String,
+    val lat: Double,
+    val lon: Double,
+    val country: String,
+    val state: String
 )
-
-@JsonClass(generateAdapter = true)
-data class GeoCodingResponse(val geocodings: List<GeoCodingList>)

@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+
+//Composable that show a box with a text, if click on retry get the weathers function from viewmodel
 @Composable
 fun ErrorView(modifier: Modifier, error: String, onRetry: () -> Unit) {
     Box(

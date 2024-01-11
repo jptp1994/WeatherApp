@@ -1,11 +1,10 @@
 package com.test.weatheapp.data.mapper
 
 import com.test.weatheapp.data.model.generalModels.CordEntity
-import com.test.weatheapp.data.room.mapper.CacheMapper
-import com.test.weatheapp.data.room.model.CoordRoom
 import com.test.weatheapp.domain.model.Cord
 import javax.inject.Inject
 
+//Mapper from Cord Entity to Cord Model
 class CordEntityMapper @Inject constructor() :
     EntityMapper<CordEntity, Cord> {
 

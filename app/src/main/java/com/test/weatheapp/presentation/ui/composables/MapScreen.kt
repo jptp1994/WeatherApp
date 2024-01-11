@@ -1,9 +1,8 @@
 package com.test.weatheapp.presentation.ui.composables
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import android.os.Bundle
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -13,53 +12,26 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-@Composable
-fun MapsScreen(mapView: MapView, latitude: Double, longitude: Double) {
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        MapContainer(
-            modifier = Modifier
-                .fillMaxSize()
-                .height(200.dp)
-                .padding(16.dp),
-            mapView = mapView,
-            latitude= latitude,
-            longitude= longitude
-        )
-    }
-}
+//Map view
 
 @Composable
-fun MapContainer(
-    modifier: Modifier = Modifier,
-    mapView: MapView,
-    latitude: Double,
-    longitude: Double
-) {
+fun MapView(lat: Double, lng: Double) {
     AndroidView(
-        factory = { mapView },
-        modifier = modifier
-    ) { map ->
-        map.onCreate(null) // Handle this based on your activity lifecycle
-
-        map.getMapAsync { googleMap ->
-            // Move the camera to the specified coordinates
-            googleMap.moveCamera(
-                CameraUpdateFactory.newLatLngZoom(
-                    LatLng(latitude, longitude),
-                    12f
-                )
-            )
-
-            // Add a marker at the specified coordinates
-            googleMap.addMarker(
-                MarkerOptions()
-                    .position(LatLng(latitude, longitude))
-                    .title("Marker Title")
-            )
-        }
-    }
+        factory = { context ->
+            MapView(context).apply {
+                // Initialize the map view settings
+                onCreate(Bundle())
+                getMapAsync { googleMap ->
+                    // Customize the map as needed
+                    val location = LatLng(lat, lng)
+                    googleMap.addMarker(MarkerOptions().position(location).title("Marker"))
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
+                }
+            }
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+    )
 }

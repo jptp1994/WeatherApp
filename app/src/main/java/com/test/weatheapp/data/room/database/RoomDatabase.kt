@@ -14,8 +14,8 @@ import com.test.weatheapp.data.room.model.WeatherRoomClass
 import com.test.weatheapp.data.room.model.WindRoom
 import com.test.weatheapp.data.room.utils.RoomConstants
 
-
-@Database(entities = [WeatherRoomClass::class, CoordRoom::class, GeneralRoom::class, WindRoom::class], version = 4, exportSchema = false)
+//Contains the general configuration of the database
+@Database(entities = [WeatherRoomClass::class, CoordRoom::class, GeneralRoom::class, WindRoom::class], version = 6, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class WeatherDatabase: RoomDatabase() {
 
@@ -36,9 +36,13 @@ abstract class WeatherDatabase: RoomDatabase() {
         ).addTypeConverter(Converters()).fallbackToDestructiveMigration().build()
     }
 
+    //Method for populate the database with a default information
     suspend fun populateDatabase() {
-        for (entityList in getDefaultData()) {
-            cachedWeatherDao().insertAll(entityList)
+        val dataActual= cachedWeatherDao().getAllWeather()
+        if (dataActual.isEmpty()) {
+            for (entityList in getDefaultData()) {
+                cachedWeatherDao().insertAll(entityList)
+            }
         }
     }
 
@@ -46,7 +50,7 @@ abstract class WeatherDatabase: RoomDatabase() {
         return listOf(
             listOf(
             WeatherRoomClass(
-                cord= CoordRoom(longitude =  19.344123, latitude =  -99.061062),
+                cord= CoordRoom(latitude = 19.334081, longitude =  -99.065182),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Sun", description = "Full sun", icon = "e10")),
                 generalClass =
                 GeneralRoom(
@@ -66,7 +70,7 @@ abstract class WeatherDatabase: RoomDatabase() {
             )),
             listOf(
             WeatherRoomClass(
-                cord= CoordRoom(longitude =  10.464973, latitude =  -66.886953),
+                cord= CoordRoom(latitude =  10.464973, longitude =  -66.886953),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Rain", description = "Medium rain", icon = "e20")),
                 generalClass =
                 GeneralRoom(
@@ -85,7 +89,7 @@ abstract class WeatherDatabase: RoomDatabase() {
                 ), nameCity = "Caracas"
             )),
             listOf(WeatherRoomClass(
-                cord= CoordRoom(longitude =  3.406703, latitude =  -76.519505),
+                cord= CoordRoom(latitude =  3.406703, longitude =  -76.519505),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Rain", description = "Hard rain", icon = "e20")),
                 generalClass =
                 GeneralRoom(
@@ -104,7 +108,7 @@ abstract class WeatherDatabase: RoomDatabase() {
                 ), nameCity = "Cali"
             )),
             listOf(WeatherRoomClass(
-                cord= CoordRoom(longitude = -0.740956, latitude =  -90.318303),
+                cord= CoordRoom(latitude = -0.740956, longitude =  -90.318303),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Sun", description = "sun", icon = "e21")),
                 generalClass =
                 GeneralRoom(
@@ -123,7 +127,7 @@ abstract class WeatherDatabase: RoomDatabase() {
                 ), nameCity = "Puerto Ayora"
             )),
             listOf(WeatherRoomClass(
-                cord= CoordRoom(longitude = -3.081459, latitude =  -60.020545),
+                cord= CoordRoom(latitude = -3.081459, longitude =  -60.020545),
                 weatherCityClass = listOf(WeatherCityClass(id= 1, main= "Sun", description = "sun", icon = "e22")),
                 generalClass =
                 GeneralRoom(
@@ -142,8 +146,6 @@ abstract class WeatherDatabase: RoomDatabase() {
                 ), nameCity = "Manaus"
             )
             )
-
-            // Agrega más datos según sea necesario
         )
     }
 }

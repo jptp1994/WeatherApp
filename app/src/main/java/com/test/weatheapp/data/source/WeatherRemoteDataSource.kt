@@ -3,10 +3,12 @@ package com.test.weatheapp.data.source
 import com.test.weatheapp.data.model.WeatherEntity
 import com.test.weatheapp.data.repository.WeatherDataSource
 import com.test.weatheapp.data.repository.WeatherRetrofit
-import com.test.weatheapp.data.retrofit.model.GeoCodingResponse
+import com.test.weatheapp.data.retrofit.model.GeoCodingList
 import com.test.weatheapp.data.room.model.WeatherRoomClass
 import javax.inject.Inject
 
+
+//Data source for retrofit
 class WeatherRemoteDataSource @Inject constructor(
     private val weatherRemote: WeatherRetrofit
 ) : WeatherDataSource {
@@ -16,7 +18,7 @@ class WeatherRemoteDataSource @Inject constructor(
        return weatherRemote.getWheather(lat, lon, apiKey)
     }
 
-    override suspend fun getCityName(nameCity: String, apiKey: String): GeoCodingResponse {
+    override suspend fun getCityName(nameCity: String, apiKey: String): List<GeoCodingList> {
        return  weatherRemote.getCityName(nameCity,apiKey)
     }
 

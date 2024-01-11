@@ -4,10 +4,12 @@ package com.test.weatheapp.data.source
 import com.test.weatheapp.data.model.WeatherEntity
 import com.test.weatheapp.data.repository.WeatherDataSource
 import com.test.weatheapp.data.repository.WeatherRoom
-import com.test.weatheapp.data.retrofit.model.GeoCodingResponse
+import com.test.weatheapp.data.retrofit.model.GeoCodingList
 import com.test.weatheapp.data.room.model.WeatherRoomClass
 import javax.inject.Inject
 
+
+//Data source for room
 class WeatherCacheDataSource @Inject constructor(
     private val weatherCache: WeatherRoom
 ) : WeatherDataSource {
@@ -17,7 +19,7 @@ class WeatherCacheDataSource @Inject constructor(
         throw UnsupportedOperationException("getWheather is not supported for CacheDataSource.")
     }
 
-    override suspend fun getCityName(nameCity: String, apiKey: String): GeoCodingResponse {
+    override suspend fun getCityName(nameCity: String, apiKey: String): List<GeoCodingList> {
         throw UnsupportedOperationException("getCityName is not supported for CacheDataSource.")
     }
 

@@ -7,6 +7,8 @@ import com.google.gson.reflect.TypeToken
 import com.test.weatheapp.data.retrofit.model.WeatherCityClass
 import java.lang.reflect.Type
 
+
+//Converter for all the list implemented in room data class
 @ProvidedTypeConverter
 class Converters {
 

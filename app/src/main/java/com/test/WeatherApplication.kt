@@ -13,8 +13,8 @@ class WeatherApplication : Application(){
     override fun onCreate() {
         super.onCreate()
 
+        //Use for populate the database
         val database = WeatherDatabase.getInstance(this)
-        // Llama al método para llenar la tabla con datos por defecto
         CoroutineScope(Dispatchers.IO).launch {
             database.populateDatabase()
         }

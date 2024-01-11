@@ -8,6 +8,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+
+//Contains the dagger injection for presentation layer
 @Module
 @InstallIn(SingletonComponent::class)
 object PresentationModule {

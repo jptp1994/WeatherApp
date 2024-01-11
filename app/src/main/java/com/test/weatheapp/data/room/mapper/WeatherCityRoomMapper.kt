@@ -4,6 +4,7 @@ import com.test.weatheapp.data.model.generalModels.WeatherCityEntity
 import com.test.weatheapp.data.retrofit.model.WeatherCityClass
 import javax.inject.Inject
 
+//Mapper from WeatherCity Room to WeatherCity Entity
 class WeatherCityRoomMapper @Inject constructor() :
     CacheMapper<WeatherCityClass, WeatherCityEntity> {
 
